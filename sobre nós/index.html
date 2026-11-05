@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH FC - Sobre Nós</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo da Marquês (1).png" alt="Logo MATH FC" class="logo">
+        <div class="header-content">
+            <h1>MATH FC</h1>
+            <p>A mistura perfeita entre matemática e futebol!</p>
+            <nav>
+                <a href="../inicío/index.html">INÍCIO</a>
+                <a href="../regras/index.html">REGRAS DO JOGO</a>
+                <a href="../sobre nós/index.html" class="active">SOBRE NÓS</a>
+                  <a href="../contato/contato.html">CONTATO</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="cards-container">
+        <div class="card">
+            <img src="Davi .jpeg" alt="Davi">
+            <h3><p>Sou o Davi, estou cursando o 3º ano do curso técnico em informática na escola estadual Marquês de Sapucaí. Pretendo ser um músico militar, tocando trombone, ou ser programador. Espero que o site seja produtivo, para as pessoas desenvolverem um pensamento melhorado da matemática.</p></h3>
+        </div>
+
+        <div class="card">
+            <img src="mateus .jpeg" alt="Mateus">
+            <h3><p>Sou o Mateus Venturelli Ribeiro, estou no 3º ano do curso de Técnico em Informática. Na parte noturna também estou fazendo um curso de Administração. Quero seguir na carreira de Empreendedor, onde tenho uma loja de roupas masculinas. Espero que o site seja eficiente no estudo da matemática, para que alunos de várias escolas possam aprender matemática de forma mais criativa.</p></h3>
+        </div>
+
+        <div class="card">
+            <img src="allisson .jpeg" alt="Allisson">
+            <h3><p>Sou o Allisson, estou cursando o 3º ano do curso técnico em informática na Escola Estadual Marquês de Sapucaí. Quero seguir minha carreira como engenheiro mecânico aeronáutico ou também como sargento na aeronáutica. Espero que o site seja eficiente no estuda da matemática, para que alunos de várias escolas possam aprender matemática de forma mais criativa.</p></h3>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 MATH FC - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.querySelector('.cards-container');
+            if (!container) return;
+            var cards = container.querySelectorAll('.card');
+
+            function closeActive() {
+                var active = container.querySelector('.card.card-active');
+                if (active) {
+                    active.classList.remove('card-active');
+                    active.setAttribute('aria-pressed', 'false');
+                }
+                container.classList.remove('has-active');
+            }
+
+            function toggleCard(card) {
+                var wasActive = card.classList.contains('card-active');
+                closeActive();
+                if (!wasActive) {
+                    card.classList.add('card-active');
+                    card.setAttribute('aria-pressed', 'true');
+                    container.classList.add('has-active');
+                }
+            }
+
+            cards.forEach(function (card) {
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-pressed', 'false');
+
+                card.addEventListener('click', function () {
+                    toggleCard(card);
+                });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleCard(card);
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!container.contains(e.target)) closeActive();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeActive();
+            });
+        });
+    </script>
+</body>
+</html>
